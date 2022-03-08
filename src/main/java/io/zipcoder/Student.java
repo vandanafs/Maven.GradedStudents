@@ -18,6 +18,7 @@ public class Student {
     public void setFirstName ( String firstName ) {
         this.firstName = firstName;
     }
+    public void setLastName ( String lastName ) { this.lastName = lastName;}
 
     public String getFirstName () {
         return firstName;
@@ -35,14 +36,16 @@ public class Student {
         return result;
     }
 
-    public void setLastName ( String lastName ) {
-        this.lastName = lastName;
-    }
+
 //not needed, obj state is mutated via takeExam()
-   public HashMap setExamScores ( int examNumber, double newScore ) {
+   public HashMap setExamScores1 ( int examNumber, double newScore ) {
       HashMap hmap=new HashMap();
       hmap.put("examNumber",newScore);
       return hmap;
+   }
+
+   public Double setExamScores( int examNumber, double newScore ){
+     return    examScores.set(examNumber-1, newScore);
    }
 
     public int  getNumberOfExamsTaken(){ //return total no of exam taken
@@ -61,6 +64,8 @@ public class Student {
       examScores.add(scores);
         return examScores;
     }
+
+
 
     @Override
     public String toString () {

@@ -3,6 +3,8 @@ package io.zipcoder;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.SQLOutput;
+
 public class StudentTest {
 
     @Test
@@ -25,6 +27,54 @@ public class StudentTest {
         // Then
         System.out.println("actual:"+output);
         Assert.assertEquals(expected ,output);
+    }
+
+    @Test
+    public void addExamScoreTest(){
+        // : Given
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        Double[] examScores = { };
+        Student student = new Student(firstName, lastName, examScores);
+
+        // When
+        student.addExamScore(100.0);
+        String output = student.getExamScores();
+
+        // Then
+        System.out.println(output);
+    }
+
+    @Test //wrong
+    public void setExamScore(){
+        //given
+        String firstName="Leon";
+        String lastName="Hunter";
+        Double[] examScores={100.0};
+        Student student=new Student(firstName,lastName, examScores);
+
+        //when
+        System.out.println("Set exam score---->+"+student.setExamScores(1,150.0));
+        String output=student.getExamScores();   //it is not printing latest added
+
+        //then
+        System.out.println("Get exam scores-->"+output);
+    }
+
+    @Test
+    public void getAverageExamScore(){
+        //given
+        String firstName="Leon";
+        String lastName="Hunter";
+        Double[] examScores={100.0,150.0, 250.0,0.0};
+        Student student=new Student(firstName,lastName, examScores);
+         Double  expAvg=125.0;
+        //when
+        Double output=student.getAverageExamScore();
+
+        //then
+        System.out.println(output);
+        Assert.assertEquals(expAvg,output);
     }
 
 }
