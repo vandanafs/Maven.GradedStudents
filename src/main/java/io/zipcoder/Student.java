@@ -44,8 +44,10 @@ public class Student {
       return hmap;
    }
 
-   public Double setExamScores( int examNumber, double newScore ){
-     return    examScores.set(examNumber-1, newScore);
+   public void  setExamScores( int examNumber, double newScore ){
+
+        //  examScores.set(examNumber, newScore);  //set index 0
+       examScores.add(examNumber, newScore);
    }
 
     public int  getNumberOfExamsTaken(){ //return total no of exam taken
@@ -60,20 +62,19 @@ public class Student {
 
              return(studAvg/ examScores.size());
     }
-    public ArrayList<Double> addExamScore( double scores){
-      examScores.add(scores);
-        return examScores;
+
+    public void  addExamScore( double scores){
+        setExamScores(getNumberOfExamsTaken(),scores);   //if adding 5th score adds, 4-1=set and get at 3+1
+
+     // examScores.add(scores);
+       // return examScores;
     }
 
+       public String  toString(){
+        String  studentData= "Student Name:"+firstName+" "+lastName+"\n"+"Average Scores: "+getAverageExamScore()+"\n"+"Exam Scores: "+"\n"+ getExamScores();
+        return studentData;
+
+       }
 
 
-    @Override
-    public String toString () {
-        return new StringBuilder()
-                .append("\n My firstname is "+firstName)
-                .append("\n My lastname is "+lastName)
-                .append("\n MExam Score is"+examScores )
-                .toString();
-
-    }
 }
